@@ -10,6 +10,12 @@ if (typeof window === 'undefined'){
  * and two white pieces at [3, 3] and [4, 4].
  */
 function _makeGrid() {
+  let grid = new Array(8).fill(undefined).map(() => new Array(8).fill(undefined));
+  grid[3][4] = new Piece("black");
+  grid[4][3] = new Piece("black");
+  grid[3][3] = new Piece("white");
+  grid[4][4] = new Piece("white");
+  return grid;
 }
 
 /**
@@ -29,6 +35,15 @@ Board.DIRS = [
  * Checks if a given position is on the Board.
  */
 Board.prototype.isValidPos = function (pos) {
+  let position = Array.from(pos);
+  let row = position[0];
+  let col = position[1];
+
+  if ((row < 0 || row > 7) && (col < 0 || col > 7)) {
+    return false;
+  } else {
+    return true;
+  }
 };
 
 /**
@@ -57,7 +72,7 @@ Board.prototype.isOccupied = function (pos) {
  * It then returns an array of all pieces between the starting position and
  * ending position.
  *
- * Returns an empty array if it reaches the end of the board before finding 
+ * Returns an empty array if it reaches the end of the board before finding
  * another piece of the same color.
  *
  * Returns empty array if it hits an empty position.
