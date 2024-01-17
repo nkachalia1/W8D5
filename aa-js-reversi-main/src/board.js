@@ -59,11 +59,12 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
-  if (this.grid[pos[0]][pos[1]].color === color){
-    return true 
-  } else {
-    return false 
-  }
+    let potentialPiece = this.getPiece(pos)
+    if (potentialPiece && this.getPiece(pos).color === color){
+      return true 
+    } else {
+      return false 
+    }
 };
 
 /**
@@ -92,12 +93,8 @@ Board.prototype.isOccupied = function (pos) {
  */
 Board.prototype._positionsToFlip = function (pos, color, dir, piecesToFlip) {
   let newArr = []
+  
   if (this.isValidPos(pos) === false) return []
-
-
-
-
-
 
 
 
